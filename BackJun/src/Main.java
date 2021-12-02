@@ -1,13 +1,20 @@
+import java.io.BufferedReader;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
-	Scanner in = new Scanner(System.in);
-
+//		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+//	Scanner in = new Scanner(System.in);
+//	double T=in.nextInt();
+//	for(int i=1; i<=T; i++) {
+//		int A=in.nextInt();
+//		int B=in.nextInt();
+//		System.out.println(A+B);
+//	}
+//	
 	
-	
-}//1
+}
 }
 //	if(A>=90) {
 //		System.out.println("A");	
@@ -57,3 +64,10 @@ public class Main {
 //	int y=in.nextInt();              // N의 갯수 만큼 x+y 해서 출력하기 
 //	System.out.println(x+y);
 //}
+
+
+//int n=in.nextInt();
+//int z = 0;
+//for(int i=1; i<=n; i++) {    // 1부터 n의 숫자만큼 더하기 
+//	z+=+i;
+//}  System.out.println(z);

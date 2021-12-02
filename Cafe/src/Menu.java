@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,20 +11,25 @@ public class Menu {
 	ArrayList<Integer> alPrice;
 	Menu(){
 		this.alMenu=new ArrayList<String>();   // 실행문은 여기다가 넣을 것.
-		
-		this.alMenu.add("Americano");	
-		this.alMenu.add("Latte");		
-		this.alMenu.add("Mocca");		
-		this.alMenu.add("Espresso");		
-		this.alMenu.add("cappuccino");	
-		
 		this.alPrice=new ArrayList<Integer>();
-		
-		this.alPrice.add(2000);
-		this.alPrice.add(3000);   
-		this.alPrice.add(3500);
-		this.alPrice.add(2500);
-		this.alPrice.add(4000);
+		File f = new File("C:\\Temp\\Menu.txt");
+		   try {
+		      FileReader fr = new FileReader(f);
+		      BufferedReader br = new BufferedReader(fr);
+		      try {
+		         String line=br.readLine();
+		         while(line!=null) {
+		            String[]ar=line.split(",");
+		            this.alMenu.add(ar[0]);
+		            this.alPrice.add(Integer.parseInt(ar[1]));
+		            line=br.readLine();
+		         }
+		      } catch (IOException e) {
+		         e.printStackTrace();
+		      }
+		   } catch (FileNotFoundException e) {
+		      e.printStackTrace();
+		   }
 	}
 	
 	void display() {  // 커피명,가격 
@@ -27,10 +37,9 @@ public class Menu {
 		for(i=0; i<alMenu.size(); i++) {
 			System.out.println((i+1)+"."+"메뉴:"+alMenu.get(i)+" "+"가격:"+alPrice.get(i));
 		}
-		this.guide();
 	}
 	void guide() {
-		System.out.println("메뉴관리(C:새로추가,U:메뉴수정,D:메뉴삭제)");
+		System.out.println("메뉴관리(X:종료,C:메뉴추가,U:메뉴수정,D:메뉴삭제)");
 	}
 	void add(String menu, int price) {
 		this.alMenu.add(menu);
@@ -46,6 +55,7 @@ public class Menu {
 	}
 	void Handling() {
 		this.display();
+		this.guide();
 		Scanner s=new Scanner(System.in);
 		String sch=s.nextLine();
 		while(!sch.equals("X")) {
@@ -81,6 +91,7 @@ public class Menu {
 				System.out.println("잘못된 입력값 입니다. 다시 입력해주세요.");
 			}
 				this.display();
+				this.guide();
 				sch=s.nextLine();}
 	}
 }
