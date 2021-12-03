@@ -7,8 +7,8 @@ public class CafeControl {
 		Order order=new Order();
 		
 		Scanner s=new Scanner(System.in);
-		System.out.println("ÇÁ·Î±×·¥ ½ÃÀÛ");
-		System.out.println("ÀÛ¾÷À» ¼±ÅÃÇÏ½Ã¿À.(X:Á¾·á,M:¸Ş´º°ü¸®,O:ÁÖ¹®°ü¸®,S:½ÇÀû°ü¸®)");
+		System.out.println("í”„ë¡œê·¸ë¨ ì‹œì‘");
+		System.out.println("ì‘ì—…ì„ ì„ íƒí•˜ì‹œì˜¤.(X:ì¢…ë£Œ,M:ë©”ë‰´ê´€ë¦¬,O:ì£¼ë¬¸ê´€ë¦¬,S:ì‹¤ì ê´€ë¦¬)");
 		String str=s.nextLine();
 		while(str.equals("X")==false) {
 			if(str.equals("M")) {
@@ -16,14 +16,14 @@ public class CafeControl {
 			    } else if(str.equals("O")) {
 					order.OrderHandling(menu);
 				} else if(str.equals("S")) {
-					System.out.println("½ÇÀû°ü¸®");
+					Order.display();
 				} else {
-					System.out.println("Àß¸øµÈ °ªÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä");
+					System.out.println("ì˜ëª»ëœ ê°’ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”");
 				}
-					System.out.println("ÀÛ¾÷À» ¼±ÅÃÇÏ½Ã¿À.(X:Á¾·á,M:¸Ş´º°ü¸®,O:ÁÖ¹®°ü¸®,S:½ÇÀû°ü¸®)");
+					System.out.println("ì‘ì—…ì„ ì„ íƒí•˜ì‹œì˜¤.(X:ì¢…ë£Œ,M:ë©”ë‰´ê´€ë¦¬,O:ì£¼ë¬¸ê´€ë¦¬,S:ì‹¤ì ê´€ë¦¬)");
 					str=s.nextLine();
 		}
-		System.out.println("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
+		System.out.println("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 		
 	
 
