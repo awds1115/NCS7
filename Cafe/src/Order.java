@@ -3,81 +3,81 @@ import java.util.Scanner;
 
 public class Order {
 	
-// ¸ğ¹ÙÀÏ(mobile), ¸Ş´º¸í(name), ¼ö·®(qty), ÃÑ¾×(sum) - ÇÊµå¸¸µé±â
-	//ÃÊ±âÈ­(alMenu, alPrice ¼±¾ğ °°Àº°Å )
-	//ÁÖ¹®Ãß°¡(add) <= ¸Ş´º¸í, ¼ö·®  -  ÃÑ¾× ÀÚµ¿°è»ê 
-	//ÁÖ¹®»èÁ¦(remove) <= ÁÖ¹®¹øÈ£¸¸ ¹Ş¾Æµé¿©¼­ »èÁ¦
-	//ÁÖ¹®¼öÁ¤(update) <= ÁÖ¹®¹øÈ£, ¸Ş´º¸í, ¼ö·® ¹Ş¾Æ¼­ ¼öÁ¤
-	//ÁÖ¹®Ç¥½Ã(display) <= ÀüÃ¼ÁÖ¹®¸ñ·Ï Ãâ·Â.
-	ArrayList<String> OrderMenu; 
-	ArrayList<Integer> alqty;
-	ArrayList<String> alMobile;
-	ArrayList<Integer>alSum;
-	Scanner s;
-	int sum;
-	Order(){	
+// ëª¨ë°”ì¼(mobile), ë©”ë‰´ëª…(name), ìˆ˜ëŸ‰(qty), ì´ì•¡(sum) - í•„ë“œë§Œë“¤ê¸°
+	//ì´ˆê¸°í™”(alMenu, alPrice ì„ ì–¸ ê°™ì€ê±° )
+	//ì£¼ë¬¸ì¶”ê°€(add) <= ë©”ë‰´ëª…, ìˆ˜ëŸ‰  -  ì´ì•¡ ìë™ê³„ì‚° 
+	//ì£¼ë¬¸ì‚­ì œ(remove) <= ì£¼ë¬¸ë²ˆí˜¸ë§Œ ë°›ì•„ë“¤ì—¬ì„œ ì‚­ì œ
+	//ì£¼ë¬¸ìˆ˜ì •(update) <= ì£¼ë¬¸ë²ˆí˜¸, ë©”ë‰´ëª…, ìˆ˜ëŸ‰ ë°›ì•„ì„œ ìˆ˜ì •
+	//ì£¼ë¬¸í‘œì‹œ(display) <= ì „ì²´ì£¼ë¬¸ëª©ë¡ ì¶œë ¥.
+	private ArrayList<String> OrderMenu; 
+	private ArrayList<Integer> alqty;
+	private ArrayList<String> alMobile;
+	private ArrayList<Integer>alSum;
+	private Scanner s;
+	private int sum;
+	public Order(){	
 		this.OrderMenu=new ArrayList<String>();
 		this.alqty=new ArrayList<Integer>();
 		this.alMobile=new ArrayList<String>();
 		this.alSum=new ArrayList<Integer>();
 		s=new Scanner(System.in);
 	}
-	void add(String menu_name,int Menu_qty, int Menu_sum) {
+	private void add(String menu_name,int Menu_qty, int Menu_sum) {
 		this.OrderMenu.add(menu_name);
 		this.alqty.add(Menu_qty);
 		this.alSum.add(Menu_sum);
 	}
-	void update(Menu menu,int menu_num, int menu_num2, int qty) {
+	private void update(Menu menu,int menu_num, int menu_num2, int qty) {
 		menu_num--;
-		this.OrderMenu.set(menu_num,menu.alMenu.get(menu_num2-1));
+		this.OrderMenu.set(menu_num,menu.getAlMenu(orderMenu-1));
 		this.alqty.set(menu_num, qty);	
-		this.alSum.set(menu_num,qty*menu.alPrice.get(menu_num));
+		this.alSum.set(menu_num,qty*menu.getAlPrice(orderMenu-1));
 		
 	}
-	void remove(int menu_num) {
+	private void remove(int menu_num) {
 		menu_num--;
 		this.OrderMenu.remove(menu_num);
 		this.alqty.remove(menu_num);
 		this.alSum.remove(menu_num);
 	}
-	void display() {
+	public void display() {
 		int i;
 		for(i=0; i<OrderMenu.size(); i++) {
-			System.out.println((i+1)+"."+"¸ğ¹ÙÀÏ:"+alMobile.get(i)+"¸Ş´º:"+OrderMenu.get(i)+" "+"¼ö·®:"+alqty.get(i)+"ÃÑ¾×:"+alSum.get(i));
+			System.out.println((i+1)+"."+"ëª¨ë°”ì¼:"+alMobile.get(i)+"ë©”ë‰´:"+OrderMenu.get(i)+" "+"ìˆ˜ëŸ‰:"+alqty.get(i)+"ì´ì•¡:"+alSum.get(i));
 		}
 	}
 	
-	void guide(){
-		System.out.println("ÀÛ¾÷À» ¼±ÅÃÇÏ½Ã¿À.(X:ÁÖ¹®Á¾·á,A:ÁÖ¹®Ãß°¡,R:ÁÖ¹®»èÁ¦,U:ÁÖ¹®¼öÁ¤)");
+	private void guide(){
+		System.out.println("ì‘ì—…ì„ ì„ íƒí•˜ì‹œì˜¤.(X:ì£¼ë¬¸ì¢…ë£Œ,A:ì£¼ë¬¸ì¶”ê°€,R:ì£¼ë¬¸ì‚­ì œ,U:ì£¼ë¬¸ìˆ˜ì •)");
 	
 	}
-	void check() {
+	private void check() {
 		int start_ndx=this.alMobile.size();
 		for(int i=start_ndx; i<OrderMenu.size(); i++) {
-			System.out.println((i+1)+"."+"¸Ş´º:"+OrderMenu.get(i)+" "+"¼ö·®:"+alqty.get(i)+" ÃÑ¾×:"+alSum.get(i));
+			System.out.println((i+1)+"."+"ë©”ë‰´:"+OrderMenu.get(i)+" "+"ìˆ˜ëŸ‰:"+alqty.get(i)+" ì´ì•¡:"+alSum.get(i));
 			}
 		
 	}
-	void check2() {
+	private void check2() {
 		int start_ndx=this.alMobile.size();
 		for(int i=start_ndx; i<OrderMenu.size(); i++) {
-			System.out.println("¸Ş´º:"+OrderMenu.get(i)+" "+"¼ö·®:"+alqty.get(i)+" ÃÑ¾×:"+alSum.get(i));
+			System.out.println("ë©”ë‰´:"+OrderMenu.get(i)+" "+"ìˆ˜ëŸ‰:"+alqty.get(i)+" ì´ì•¡:"+alSum.get(i));
 			}
 		
 	}
 
-	void OrderHandling(Menu menu) { // ÆÄ¶ó¹ÌÅÍ·Î Å¬·¡½º»çÀÌÀÇ ¿¬°áÀ» ÇÒ ¼ö ÀÖ´Ù.
+	public void OrderHandling(Menu menu) { // íŒŒë¼ë¯¸í„°ë¡œ í´ë˜ìŠ¤ì‚¬ì´ì˜ ì—°ê²°ì„ í•  ìˆ˜ ìˆë‹¤.
 		menu.display();
 		this.guide();
 		String sxh=s.nextLine();
 		while(!sxh.equals("X")) {
 			if(sxh.equals("A")){
 				menu.display();
-				System.out.println("Ãß°¡ÇÒ ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À.");
+				System.out.println("ì¶”ê°€í•  ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹œì˜¤.");
 				int Menu_number=Integer.parseInt(s.nextLine());
-				String Menu_name=menu.alMenu.get(Menu_number-1);
-				int Menu_Price=menu.alPrice.get(Menu_number-1);
-				System.out.println("¼ö·®À» ÀÔ·ÂÇÏ½Ã¿À.");
+				String Menu_name=menu.menu.getAlMenu(orderMenu-1);
+				int Menu_Price=menu.menu.getAlPrice(orderMenu-1);
+				System.out.println("ìˆ˜ëŸ‰ì„ ì…ë ¥í•˜ì‹œì˜¤.");
 				int Menu_qty=Integer.parseInt(s.nextLine());
 				int Menu_sum=Menu_Price*Menu_qty;
 				this.add(Menu_name,Menu_qty,Menu_sum);	
@@ -85,18 +85,18 @@ public class Order {
 				
 			}else if(sxh.equals("R")) {
 				this.check();
-				System.out.println("»èÁ¦ÇÒ ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À.");
+				System.out.println("ì‚­ì œí•  ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹œì˜¤.");
 				int r_menu=Integer.parseInt(s.nextLine());
 				this.remove(r_menu);
 				this.check();
 				
 			}else if(sxh.equals("U")) {
 				this.check();
-				System.out.println("º¯°æÇÒ ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À.");
+				System.out.println("ë³€ê²½í•  ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹œì˜¤.");
 				int udate=Integer.parseInt(s.nextLine());
-				System.out.println("¼öÁ¤ÇÒ ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À.");
+				System.out.println("ìˆ˜ì •í•  ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹œì˜¤.");
 				int change=Integer.parseInt(s.nextLine());
-				System.out.println("¼ö·®À» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+				System.out.println("ìˆ˜ëŸ‰ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 				int c_qty=Integer.parseInt(s.nextLine());
 				this.update(menu,udate,change,c_qty);
 				this.check();
@@ -104,9 +104,9 @@ public class Order {
 			this.guide();
 			sxh=s.nextLine();
 		}
-		System.out.println("¸ğ¹ÙÀÏ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À.(¾øÀ¸¸é,'-')");
+		System.out.println("ëª¨ë°”ì¼ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹œì˜¤.(ì—†ìœ¼ë©´,'-')");
 		String mobile=s.nextLine();
-		if(mobile.equals(""))mobile="-";    // Á¦ÀÏÁß¿ä 
+		if(mobile.equals(""))mobile="-";    // ì œì¼ì¤‘ìš” 
 		int start_ndx=this.alMobile.size();
 		for(int i=this.alMobile.size(); i<this.OrderMenu.size(); i++){
 			this.alMobile.add(mobile);
@@ -116,14 +116,14 @@ public class Order {
 			System.out.println(this.alMobile.get(i)+","+this.OrderMenu.get(i)+", x"+this.alqty.get(i)+","+this.alSum.get(i));
 			sum+=this.alSum.get(i);
 		}
-		System.out.println("ÃÑ ÁÖ¹®±İ¾×:"+sum);
+		System.out.println("ì´ ì£¼ë¬¸ê¸ˆì•¡:"+sum);
 		System.out.println("---------------------------");
 		
 	}
 //	int getInput(Menu m) {
 //		Scanner s_input=new Scanner(System.in);
 //		m.display();
-//		System.out.println("ÁÖ¹®ÇÒ ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À.");
+//		System.out.println("ì£¼ë¬¸í•  ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹œì˜¤.");
 //		return Integer.parseInt(s_input.nextLine());
 //	}
 	
