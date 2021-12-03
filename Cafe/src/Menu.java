@@ -7,10 +7,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-	ArrayList<String> alMenu;      // ÀÌ ºÎºĞ¿¡ ½ÇÇà¹®Àº ³ÖÁö¸»°í ¼±¾ğ¸¸ ÇÒ °Í.
-	ArrayList<Integer> alPrice;
-	Menu(){
-		this.alMenu=new ArrayList<String>();   // ½ÇÇà¹®Àº ¿©±â´Ù°¡ ³ÖÀ» °Í.
+	private ArrayList<String> alMenu;      // ì´ ë¶€ë¶„ì— ì‹¤í–‰ë¬¸ì€ ë„£ì§€ë§ê³  ì„ ì–¸ë§Œ í•  ê²ƒ.
+	private ArrayList<Integer> alPrice;
+	
+	public String getAlMenu(int ndx) {
+		return this.alMenu.get(ndx);
+	}
+	public int getAlPrice(int ndx) {
+		return this.alPrice.get(ndx);
+	}
+	
+	public Menu(){
+		this.alMenu=new ArrayList<String>();   // ì‹¤í–‰ë¬¸ì€ ì—¬ê¸°ë‹¤ê°€ ë„£ì„ ê²ƒ.
 		this.alPrice=new ArrayList<Integer>();
 		File f = new File("C:\\Temp\\Menu.txt");
 		   try {
@@ -32,63 +40,63 @@ public class Menu {
 		   }
 	}
 	
-	void display() {  // Ä¿ÇÇ¸í,°¡°İ 
+	public void display() {  // ì»¤í”¼ëª…,ê°€ê²© 
 		int i;
 		for(i=0; i<alMenu.size(); i++) {
-			System.out.println((i+1)+"."+"¸Ş´º:"+alMenu.get(i)+" "+"°¡°İ:"+alPrice.get(i));
+			System.out.println((i+1)+"."+"ë©”ë‰´:"+alMenu.get(i)+" "+"ê°€ê²©:"+alPrice.get(i));
 		}
 	}
-	void guide() {
-		System.out.println("¸Ş´º°ü¸®(X:Á¾·á,C:¸Ş´ºÃß°¡,U:¸Ş´º¼öÁ¤,D:¸Ş´º»èÁ¦)");
+	private void guide() {
+		System.out.println("ë©”ë‰´ê´€ë¦¬(X:ì¢…ë£Œ,C:ë©”ë‰´ì¶”ê°€,U:ë©”ë‰´ìˆ˜ì •,D:ë©”ë‰´ì‚­ì œ)");
 	}
-	void add(String menu, int price) {
+	private void add(String menu, int price) {
 		this.alMenu.add(menu);
 		this.alPrice.add(price);
 	}
-	void update(int menu_num, String menu, int price) {
+	private void update(int menu_num, String menu, int price) {
 		this.alMenu.set(menu_num-1,menu);
 		this.alPrice.set(menu_num-1, price);
 	}
-	void remove(int menu_num) {
+	private void remove(int menu_num) {
 		this.alMenu.remove(menu_num-1);
 		this.alPrice.remove(menu_num-1);
 	}
-	void Handling() {
+	public void Handling() {
 		this.display();
 		this.guide();
 		Scanner s=new Scanner(System.in);
 		String sch=s.nextLine();
 		while(!sch.equals("X")) {
 			if(sch.equals("C")) {
-				System.out.println("¸Ş´ºÃß°¡");
+				System.out.println("ë©”ë‰´ì¶”ê°€");
 				Scanner s_Menu=new Scanner(System.in);
-				System.out.println("¸Ş´º¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("ë©”ë‰´ëª…ì„ ì…ë ¥í•˜ì„¸ìš”.");
 				String nmn=s_Menu.nextLine();
-				System.out.println("°¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+				System.out.println("ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”");
 				int npc=Integer.parseInt(s_Menu.nextLine());
 				this.add(nmn, npc);
 			
 			} else if(sch.equals("U")) {
-				System.out.println("¸Ş´º¼öÁ¤");
+				System.out.println("ë©”ë‰´ìˆ˜ì •");
 				Scanner s_Menu=new Scanner(System.in);
-				System.out.println("¼öÁ¤ÇÒ ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("ìˆ˜ì •í•  ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 				int mn=Integer.parseInt(s_Menu.nextLine());
-				System.out.println("»õ ¸Ş´º¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("ìƒˆ ë©”ë‰´ëª…ì„ ì…ë ¥í•˜ì„¸ìš”.");
 				String cmn=s_Menu.nextLine();
-				System.out.println("»õ °¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("ìƒˆ ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”.");
 				int cmp=Integer.parseInt(s_Menu.nextLine());
 				this.update(mn, cmn, cmp);
 				
 			} else if(sch.equals("D")) {
-				System.out.println("¸Ş´º»èÁ¦");
+				System.out.println("ë©”ë‰´ì‚­ì œ");
 				Scanner s_Menu=new Scanner(System.in);
 				
-				System.out.println("»èÁ¦ÇÒ ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("ì‚­ì œí•  ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 				int mrv=Integer.parseInt(s_Menu.nextLine());
 				this.remove(mrv);
 				
 			} else {
-				System.out.println("Àß¸øµÈ ÀÔ·Â°ª ÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+				System.out.println("ì˜ëª»ëœ ì…ë ¥ê°’ ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			}
 				this.display();
 				this.guide();
@@ -101,28 +109,28 @@ public class Menu {
 
 //void display(String s) {
 //for(int i=0; i<this.alMenu.size(); i++) {
-//	System.out.println("¸Ş´º:"+alMenu.get(i)+" "+"°¡°İ:"+alPrice.get(i));
+//	System.out.println("ë©”ë‰´:"+alMenu.get(i)+" "+"ê°€ê²©:"+alPrice.get(i));
 //}
 //System.out.println(s);
 //this.guide();
 //}
 //void display(int n) {
 //for(int i=0; i<n; i++) {
-//	System.out.println("¸Ş´º:"+alMenu.get(i)+" "+"°¡°İ:"+alPrice.get(i));
+//	System.out.println("ë©”ë‰´:"+alMenu.get(i)+" "+"ê°€ê²©:"+alPrice.get(i));
 //}
 //this.guide();
 //}
 	
 //	int sum1(int[] values) {
 //		int total=0;
-//		for(int i=0; i<values.length; i++) {        // ¹è¿­·Î ºÒ·¯¿À´Â ¹æ¹ı1
+//		for(int i=0; i<values.length; i++) {        // ë°°ì—´ë¡œ ë¶ˆëŸ¬ì˜¤ëŠ” ë°©ë²•1
 //			total+=values[i];    
 //		}
 //		return total;
 //	}
 //	int sum2(int...values) {
 //		int total=0;
-//		for(int i=0; i<values.length; i++) {    //  ¹è¿­·Î ºÒ·¯¿À´Â ¹æ¹ı2
+//		for(int i=0; i<values.length; i++) {    //  ë°°ì—´ë¡œ ë¶ˆëŸ¬ì˜¤ëŠ” ë°©ë²•2
 //			total+=values[i];
 //		}
 //		return total;
