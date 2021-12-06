@@ -3,12 +3,12 @@ import java.util.Scanner;
 
 public class Order {
 	
-// 모바일(mobile), 메뉴명(name), 수량(qty), 총액(sum) - 필드만들기
-	//초기화(alMenu, alPrice 선언 같은거 )
-	//주문추가(add) <= 메뉴명, 수량  -  총액 자동계산 
-	//주문삭제(remove) <= 주문번호만 받아들여서 삭제
-	//주문수정(update) <= 주문번호, 메뉴명, 수량 받아서 수정
-	//주문표시(display) <= 전체주문목록 출력.
+	// 모바일(mobile), 메뉴명(name), 수량(qty), 총액(sum) - 필드만들기
+		//초기화(alMenu, alPrice 선언 같은거 )
+		//주문추가(add) <= 메뉴명, 수량  -  총액 자동계산 
+		//주문삭제(remove) <= 주문번호만 받아들여서 삭제
+		//주문수정(update) <= 주문번호, 메뉴명, 수량 받아서 수정
+		//주문표시(display) <= 전체주문목록 출력.
 	private ArrayList<String> OrderMenu; 
 	private ArrayList<Integer> alqty;
 	private ArrayList<String> alMobile;
@@ -29,9 +29,9 @@ public class Order {
 	}
 	private void update(Menu menu,int menu_num, int menu_num2, int qty) {
 		menu_num--;
-		this.OrderMenu.set(menu_num,menu.getAlMenu(orderMenu-1));
+		this.OrderMenu.set(menu_num,menu.getAlMenu(menu_num2));
 		this.alqty.set(menu_num, qty);	
-		this.alSum.set(menu_num,qty*menu.getAlPrice(orderMenu-1));
+		this.alSum.set(menu_num,qty*menu.getAlPrice(menu_num2));
 		
 	}
 	private void remove(int menu_num) {
@@ -75,8 +75,8 @@ public class Order {
 				menu.display();
 				System.out.println("추가할 메뉴번호를 입력하시오.");
 				int Menu_number=Integer.parseInt(s.nextLine());
-				String Menu_name=menu.menu.getAlMenu(orderMenu-1);
-				int Menu_Price=menu.menu.getAlPrice(orderMenu-1);
+				String Menu_name=menu.getAlMenu(Menu_number-1);
+				int Menu_Price=menu.getAlPrice(Menu_number-1);
 				System.out.println("수량을 입력하시오.");
 				int Menu_qty=Integer.parseInt(s.nextLine());
 				int Menu_sum=Menu_Price*Menu_qty;
@@ -106,7 +106,7 @@ public class Order {
 		}
 		System.out.println("모바일번호를 입력하시오.(없으면,'-')");
 		String mobile=s.nextLine();
-		if(mobile.equals(""))mobile="-";    // 제일중요 
+		if(mobile.equals(""))mobile="-";    // 제일중요  
 		int start_ndx=this.alMobile.size();
 		for(int i=this.alMobile.size(); i<this.OrderMenu.size(); i++){
 			this.alMobile.add(mobile);
@@ -121,10 +121,11 @@ public class Order {
 		
 	}
 //	int getInput(Menu m) {
-//		Scanner s_input=new Scanner(System.in);
-//		m.display();
-//		System.out.println("주문할 메뉴번호를 입력하시오.");
-//		return Integer.parseInt(s_input.nextLine());
-//	}
+//	Scanner s_input=new Scanner(System.in);
+//	m.display();
+//	System.out.println("주문할 메뉴번호를 입력하시오.");
+//	return Integer.parseInt(s_input.nextLine());
+//}
+
 	
 }

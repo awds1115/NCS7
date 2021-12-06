@@ -16,7 +16,7 @@ public class CafeControl {
 			    } else if(str.equals("O")) {
 					order.OrderHandling(menu);
 				} else if(str.equals("S")) {
-					Order.display();
+					order.display();
 				} else {
 					System.out.println("잘못된 값입니다. 다시 입력해주세요");
 				}

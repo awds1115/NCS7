@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-	private ArrayList<String> alMenu;      // ì´ ë¶€ë¶„ì— ì‹¤í–‰ë¬¸ì€ ë„£ì§€ë§ê³  ì„ ì–¸ë§Œ í•  ê²ƒ.
+	private ArrayList<String> alMenu;       // ÀÌ ºÎºĞ¿¡ ½ÇÇà¹®Àº ³ÖÁö¸»°í ¼±¾ğ¸¸ ÇÒ °Í.
 	private ArrayList<Integer> alPrice;
 	
 	public String getAlMenu(int ndx) {
@@ -18,7 +18,7 @@ public class Menu {
 	}
 	
 	public Menu(){
-		this.alMenu=new ArrayList<String>();   // ì‹¤í–‰ë¬¸ì€ ì—¬ê¸°ë‹¤ê°€ ë„£ì„ ê²ƒ.
+		this.alMenu=new ArrayList<String>();    // ½ÇÇà¹®Àº ¿©±â´Ù°¡ ³ÖÀ» °Í.
 		this.alPrice=new ArrayList<Integer>();
 		File f = new File("C:\\Temp\\Menu.txt");
 		   try {
@@ -40,14 +40,14 @@ public class Menu {
 		   }
 	}
 	
-	public void display() {  // ì»¤í”¼ëª…,ê°€ê²© 
+	public void display() {  // Ä¿ÇÇ¸í,°¡°İ 
 		int i;
 		for(i=0; i<alMenu.size(); i++) {
-			System.out.println((i+1)+"."+"ë©”ë‰´:"+alMenu.get(i)+" "+"ê°€ê²©:"+alPrice.get(i));
+			System.out.println((i+1)+"."+"¸Ş´º:"+alMenu.get(i)+" "+"°¡°İ:"+alPrice.get(i));
 		}
 	}
 	private void guide() {
-		System.out.println("ë©”ë‰´ê´€ë¦¬(X:ì¢…ë£Œ,C:ë©”ë‰´ì¶”ê°€,U:ë©”ë‰´ìˆ˜ì •,D:ë©”ë‰´ì‚­ì œ)");
+		System.out.println("¸Ş´º°ü¸®(X:Á¾·á,C:¸Ş´ºÃß°¡,U:¸Ş´º¼öÁ¤,D:¸Ş´º»èÁ¦)");
 	}
 	private void add(String menu, int price) {
 		this.alMenu.add(menu);
@@ -68,35 +68,35 @@ public class Menu {
 		String sch=s.nextLine();
 		while(!sch.equals("X")) {
 			if(sch.equals("C")) {
-				System.out.println("ë©”ë‰´ì¶”ê°€");
+				System.out.println("¸Ş´ºÃß°¡");
 				Scanner s_Menu=new Scanner(System.in);
-				System.out.println("ë©”ë‰´ëª…ì„ ì…ë ¥í•˜ì„¸ìš”.");
+				System.out.println("¸Ş´º¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
 				String nmn=s_Menu.nextLine();
-				System.out.println("ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”");
+				System.out.println("°¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä");
 				int npc=Integer.parseInt(s_Menu.nextLine());
 				this.add(nmn, npc);
 			
 			} else if(sch.equals("U")) {
-				System.out.println("ë©”ë‰´ìˆ˜ì •");
+				System.out.println("¸Ş´º¼öÁ¤");
 				Scanner s_Menu=new Scanner(System.in);
-				System.out.println("ìˆ˜ì •í•  ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+				System.out.println("¼öÁ¤ÇÒ ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
 				int mn=Integer.parseInt(s_Menu.nextLine());
-				System.out.println("ìƒˆ ë©”ë‰´ëª…ì„ ì…ë ¥í•˜ì„¸ìš”.");
+				System.out.println("»õ ¸Ş´º¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
 				String cmn=s_Menu.nextLine();
-				System.out.println("ìƒˆ ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”.");
+				System.out.println("»õ °¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
 				int cmp=Integer.parseInt(s_Menu.nextLine());
 				this.update(mn, cmn, cmp);
 				
 			} else if(sch.equals("D")) {
-				System.out.println("ë©”ë‰´ì‚­ì œ");
+				System.out.println("¸Ş´º»èÁ¦");
 				Scanner s_Menu=new Scanner(System.in);
 				
-				System.out.println("ì‚­ì œí•  ë©”ë‰´ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+				System.out.println("»èÁ¦ÇÒ ¸Ş´º¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
 				int mrv=Integer.parseInt(s_Menu.nextLine());
 				this.remove(mrv);
 				
 			} else {
-				System.out.println("ì˜ëª»ëœ ì…ë ¥ê°’ ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				System.out.println("Àß¸øµÈ ÀÔ·Â°ª ÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 			}
 				this.display();
 				this.guide();
@@ -109,31 +109,29 @@ public class Menu {
 
 //void display(String s) {
 //for(int i=0; i<this.alMenu.size(); i++) {
-//	System.out.println("ë©”ë‰´:"+alMenu.get(i)+" "+"ê°€ê²©:"+alPrice.get(i));
+//	System.out.println("¸Ş´º:"+alMenu.get(i)+" "+"°¡°İ:"+alPrice.get(i));
 //}
 //System.out.println(s);
 //this.guide();
 //}
 //void display(int n) {
 //for(int i=0; i<n; i++) {
-//	System.out.println("ë©”ë‰´:"+alMenu.get(i)+" "+"ê°€ê²©:"+alPrice.get(i));
+//	System.out.println("¸Ş´º:"+alMenu.get(i)+" "+"°¡°İ:"+alPrice.get(i));
 //}
 //this.guide();
 //}
 	
 //	int sum1(int[] values) {
 //		int total=0;
-//		for(int i=0; i<values.length; i++) {        // ë°°ì—´ë¡œ ë¶ˆëŸ¬ì˜¤ëŠ” ë°©ë²•1
+//		for(int i=0; i<values.length; i++) {        // ¹è¿­·Î ºÒ·¯¿À´Â ¹æ¹ı1
 //			total+=values[i];    
 //		}
 //		return total;
 //	}
 //	int sum2(int...values) {
 //		int total=0;
-//		for(int i=0; i<values.length; i++) {    //  ë°°ì—´ë¡œ ë¶ˆëŸ¬ì˜¤ëŠ” ë°©ë²•2
+//		for(int i=0; i<values.length; i++) {    //  ¹è¿­·Î ºÒ·¯¿À´Â ¹æ¹ı2
 //			total+=values[i];
 //		}
 //		return total;
 //	}
-
-
